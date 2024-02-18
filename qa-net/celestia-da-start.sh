@@ -1,4 +1,17 @@
 #!/bin/bash
+# Try to get the genesis hash. Usually first request returns an empty string (port is not open, curl fails), later attempts
+# returns "null" if block was not yet produced.
+GENESIS=
+CNT=0
+MAX=30
+while [ "${#GENESIS}" -le 4 -a $CNT -ne $MAX ]; do
+	GENESIS=$(curl -s http://192.167.0.2:26657/block?height=1 | jq '.result.block_id.hash' | tr -d '"')
+	((CNT++))
+	sleep 1
+done
+
+export CELESTIA_CUSTOM=test:$GENESIS
+echo "$CELESTIA_CUSTOM"
 
 celestia-da bridge init --node.store /home/celestia/bridge
 

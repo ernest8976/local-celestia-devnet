@@ -31,6 +31,7 @@ services:
       - 26650:26650
       - 26658:26658
       - 26659:26659
+      - 2121:2121
     volumes:
       - ./celestia/bridge:/home/celestia/bridge
       - ./celestia-da-start.sh:/home/celestia/celestia-da-start.sh
