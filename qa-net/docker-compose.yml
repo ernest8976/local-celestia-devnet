@@ -23,16 +23,17 @@ services:
     image: ernest/celestia-da:v0.12.9
     restart: always
     container_name: 'celestia-bridge-node'
-    command: 'celestia-da bridge start --node.store /home/celestia/bridge --gateway --core.ip 192.167.0.2 --keyring.accname validator --gateway.addr 0.0.0.0 --rpc.addr 0.0.0.0 --da.grpc.namespace 0000d832b53576dd9ef4 --da.grpc.listen "0.0.0.0:26650" '
     environment:
       NODE_STORE: '/home/celestia/bridge/'
       NODE_TYPE: 'bridge'
+    command: 'sh -c /home/celestia/celestia-da-start.sh'
     ports:
       - 26650:26650
       - 26658:26658
       - 26659:26659
     volumes:
       - ./celestia/bridge:/home/celestia/bridge
+      - ./celestia-da-start.sh:/home/celestia/celestia-da-start.sh
     networks:
       localnet:
         ipv4_address: 192.167.0.3
