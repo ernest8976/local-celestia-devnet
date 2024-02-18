@@ -19,3 +19,7 @@
 ```shell
 ./clean-cluster.sh
 ```
+
+### todo
+- verify the celestia logic
+- support more types da-node,i.e. full-node,light-node
