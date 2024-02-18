@@ -1,10 +1,10 @@
 version: '3.8'
 
 services:
-  app:
+  celestia-app:
     image: ernest/celestia-app:v1.6.0
     restart: always
-    container_name: 'celestia-app'
+    container_name: 'app'
     command: 'start --grpc.enable &'
     environment:
       APP_PATH: '/home/celestia/'
@@ -19,10 +19,10 @@ services:
       localnet:
         ipv4_address: 192.167.0.2
 
-  bridge-node:
+  celestia-bridge-node:
     image: ernest/celestia-da:v0.12.9
     restart: always
-    container_name: 'celestia-bridge-node'
+    container_name: 'bridge-node'
     environment:
       NODE_STORE: '/home/celestia/bridge/'
       NODE_TYPE: 'bridge'
