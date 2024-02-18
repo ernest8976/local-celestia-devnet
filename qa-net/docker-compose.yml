@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    image: ernest/celestia-app:v1.6.0
+    restart: always
+    container_name: 'celestia-app'
+    command: 'start --grpc.enable &'
+    environment:
+      APP_PATH: '/home/celestia/'
+    ports:
+      - 26656:26656
+      - 26657:26657
+      - 1317:1317
+      - 9090:9090
+    volumes:
+      - ./celestia/.celestia-app:/home/celestia/.celestia-app
+    networks:
+      localnet:
+        ipv4_address: 192.167.0.2
+
+  bridge-node:
+    image: ernest/celestia-da:v0.12.9
+    restart: always
+    container_name: 'celestia-bridge-node'
+    command: 'celestia-da bridge start --node.store /home/celestia/bridge --gateway --core.ip 192.167.0.2 --keyring.accname validator --gateway.addr 0.0.0.0 --rpc.addr 0.0.0.0 --da.grpc.namespace 0000d832b53576dd9ef4 --da.grpc.listen "0.0.0.0:26650" '
+    environment:
+      NODE_STORE: '/home/celestia/bridge/'
+      NODE_TYPE: 'bridge'
+    ports:
+      - 26650:26650
+      - 26658:26658
+      - 26659:26659
+    volumes:
+      - ./celestia/bridge:/home/celestia/bridge
+    networks:
+      localnet:
+        ipv4_address: 192.167.0.3
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: 192.167.0.0/16
