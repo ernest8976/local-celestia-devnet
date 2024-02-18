@@ -73,6 +73,7 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo "$CELESTIA_CUSTOM"
 
+# random string, i.e: 0000d832b53576dd9ef4
 if [ -z "$CELESTIA_NAMESPACE" ]; then
     CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
 fi

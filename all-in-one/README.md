@@ -1,5 +1,17 @@
 ## qa-net
 
+### build the celestia-app images
+```shell
+./celestia-app-build.sh
+```
+
+### build the celestia-da images
+```shell
+./celestia-da-build.sh
+```
+
+### build the local-celestia-devnet images
+
 this is a qa-net for celestia, which include multi celestia-app nodes and celestia-da module.
 
 all docker image are built by forked repo.
@@ -9,6 +21,8 @@ To build the Docker image:
 ```bash
 docker build . -t ernest/celestia-local-devnet
 ```
+
+### start the cluster
 
 ```bash
 docker run -d -t -i \
