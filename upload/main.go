@@ -13,7 +13,8 @@ import (
 )
 
 var (
-	rpcAddr  = "http://127.0.0.1:26658"
+	rpcAddr = "http://127.0.0.1:26658"
+	//rpctoken is used to access the bridge node ,and different every time
 	rpcToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBbGxvdyI6WyJwdWJsaWMiLCJyZWFkIiwid3JpdGUiXX0.CP0e8U2NWFtvpj-krp8DFutzK0s7ycH03Nf08z5fCag"
 )
 
