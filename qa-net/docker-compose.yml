@@ -26,7 +26,7 @@ services:
     environment:
       NODE_STORE: '/home/celestia/bridge/'
       NODE_TYPE: 'bridge'
-    command: 'sh -c /home/celestia/celestia-da-start.sh'
+    command: 'sh -c /home/celestia/celestia-bridge-start.sh'
     ports:
       - 26650:26650
       - 26658:26658
@@ -34,10 +34,31 @@ services:
       - 2121:2121
     volumes:
       - ./celestia/bridge:/home/celestia/bridge
-      - ./celestia-da-start.sh:/home/celestia/celestia-da-start.sh
+      - ./celestia-bridge-start.sh:/home/celestia/celestia-bridge-start.sh
     networks:
       localnet:
         ipv4_address: 192.167.0.3
+
+
+  celestia-full-node:
+    image: ernest/celestia-da:v0.12.9
+    restart: always
+    container_name: 'full-node'
+    environment:
+      NODE_STORE: '/home/celestia/full/'
+      NODE_TYPE: 'full'
+    command: 'sh -c /home/celestia/celestia-full-start.sh'
+    ports:
+      - 36650:26650
+      - 36658:26658
+      - 36659:26659
+      - 3121:2121
+    volumes:
+      - ./celestia/full:/home/celestia/full
+      - ./celestia-full-start.sh:/home/celestia/celestia-full-start.sh
+    networks:
+      localnet:
+        ipv4_address: 192.167.0.4
 
 networks:
   localnet:
