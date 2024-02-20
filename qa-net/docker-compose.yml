@@ -32,6 +32,7 @@ services:
       - 26658:26658
       - 26659:26659
       - 2121:2121
+      - 8080:8080
     volumes:
       - ./celestia/bridge:/home/celestia/bridge
       - ./celestia-bridge-start.sh:/home/celestia/celestia-bridge-start.sh

@@ -10,8 +10,15 @@ while [ "${#GENESIS}" -le 4 -a $CNT -ne $MAX ]; do
 	sleep 1
 done
 
+
+NODEID=
+while [ "${#NODEID}" -le 4 ]; do
+  NODEID=$(curl -s http://192.167.0.3:8080/nodeID | jq '.nodeID' | tr -d '"')
+  sleep 1
+done
+
 # https://docs.celestia.org/nodes/celestia-node-custom-networks
-export BRIDGE="/ip4/192.167.0.3/tcp/2121/p2p/12D3KooWQznDe5A44j1tzXCkTRMTy16BuDfSrouTmMeujDUeLhbC"
+export BRIDGE="/ip4/192.167.0.3/tcp/2121/p2p/$NODEID"
 export CELESTIA_CUSTOM=test:$GENESIS:$BRIDGE
 echo "$CELESTIA_CUSTOM"
 
