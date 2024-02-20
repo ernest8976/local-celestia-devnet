@@ -35,7 +35,7 @@ services:
       - 8080:8080
     volumes:
       - ./celestia/bridge:/home/celestia/bridge
-      - ./celestia-bridge-start.sh:/home/celestia/celestia-bridge-start.sh
+      - ./shell/celestia-bridge-start.sh:/home/celestia/celestia-bridge-start.sh
     networks:
       localnet:
         ipv4_address: 192.167.0.3
@@ -56,7 +56,7 @@ services:
       - 3121:2121
     volumes:
       - ./celestia/full:/home/celestia/full
-      - ./celestia-full-start.sh:/home/celestia/celestia-full-start.sh
+      - ./shell/celestia-full-start.sh:/home/celestia/celestia-full-start.sh
     networks:
       localnet:
         ipv4_address: 192.167.0.4
