@@ -1,3 +1,3 @@
 #!/bin/bash
-rm -rf da-network
 docker-compose down
+rm -rf da-network
