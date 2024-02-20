@@ -40,7 +40,6 @@ services:
       localnet:
         ipv4_address: 192.167.0.3
 
-
   celestia-full-node:
     image: ernest/celestia-da:v0.12.9
     restart: always
@@ -60,6 +59,46 @@ services:
     networks:
       localnet:
         ipv4_address: 192.167.0.4
+
+  celestia-light-node1:
+    image: ernest/celestia-da:v0.12.9
+    restart: always
+    container_name: 'light-node1'
+    environment:
+      NODE_STORE: '/home/celestia/light1/'
+      NODE_TYPE: 'light'
+    command: 'sh -c /home/celestia/celestia-light1-start.sh'
+    ports:
+      - 46650:26650
+      - 46658:26658
+      - 46659:26659
+      - 4121:2121
+    volumes:
+      - ./celestia/light1:/home/celestia/light
+      - ./shell/celestia-light1-start.sh:/home/celestia/celestia-light1-start.sh
+    networks:
+      localnet:
+        ipv4_address: 192.167.0.5
+
+  celestia-light-node2:
+    image: ernest/celestia-da:v0.12.9
+    restart: always
+    container_name: 'light-node2'
+    environment:
+      NODE_STORE: '/home/celestia/light2/'
+      NODE_TYPE: 'light'
+    command: 'sh -c /home/celestia/celestia-light2-start.sh'
+    ports:
+      - 56650:26650
+      - 56658:26658
+      - 56659:26659
+      - 5121:2121
+    volumes:
+      - ./celestia/light2:/home/celestia/light
+      - ./shell/celestia-light2-start.sh:/home/celestia/celestia-light2-start.sh
+    networks:
+      localnet:
+        ipv4_address: 192.167.0.6
 
 networks:
   localnet:
